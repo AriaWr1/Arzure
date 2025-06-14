@@ -28,9 +28,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   return (
     <div className={`fixed inset-0 z-50 bg-black flex items-center justify-center transition-opacity duration-500 ${isComplete ? 'opacity-0' : 'opacity-100'}`}>
       <div className="text-center">
-        <div className="relative mb-8">
-          <Code2 className="h-16 w-16 text-primary-500 mx-auto animate-pulse-glow" />
-          <div className="absolute inset-0 bg-primary-500 opacity-20 blur-xl animate-pulse"></div>
+        <div className="mb-8">
+          <Code2 className="h-16 w-16 text-primary-500 mx-auto bg-transparent shadow-none border-none" />
         </div>
         
         <h1 className="text-4xl font-bold gradient-text mb-4">Arzure</h1>
