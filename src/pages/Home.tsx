@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import ThreeBackground from '../components/ThreeBackground';
+import CustomCursor from '../components/CustomCursor';
+import LoadingScreen from '../components/LoadingScreen';
 import Hero from '../components/home/Hero';
 import Services from '../components/home/Services';
-import Stats from '../components/home/Stats';
 import Portfolio from '../components/home/Portfolio';
-import Testimonials from '../components/home/Testimonials';
+import FAQ from '../components/home/FAQ';
 import CTA from '../components/home/CTA';
 
 const Home: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    // Smooth scroll behavior
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px',
@@ -25,23 +30,35 @@ const Home: React.FC = () => {
     animatedElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [isLoading]);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />;
+  }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      <ThreeBackground />
+      <CustomCursor />
+      
       <Hero />
+      
       <div className="animate-on-scroll">
         <Services />
       </div>
-      <div className="animate-on-scroll">
-        <Stats />
-      </div>
+      
       <div className="animate-on-scroll">
         <Portfolio />
       </div>
+      
       <div className="animate-on-scroll">
-        <Testimonials />
+        <FAQ />
       </div>
+      
       <div className="animate-on-scroll">
         <CTA />
       </div>
